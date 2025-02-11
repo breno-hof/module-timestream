@@ -16,14 +16,10 @@ output "aws_timestream_database_kms_key_arn" {
 
 output "aws_timestream_table_id" {
 	description = "The table_name and database_name separated by a colon (:)."
-	value = {
-		for table_id, table in aws_timestreamwrite_table.this : table_id => table.id
-	}
+	value = [for table in aws_timestreamwrite_table.this : table.id]
 }
 
 output "aws_timestream_table_arn" {
 	description = "The ARN that uniquely identifies this table."
-	value		= {
-		for table_id, table in aws_timestreamwrite_table.this : table_arn => table.arn
-	}
+	value		= [for table in aws_timestreamwrite_table.this : table.arn]
 }

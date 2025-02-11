@@ -14,7 +14,7 @@ This Terraform module provisions an AWS Timestream database along with tables an
 
 ```hcl
 module "timestream" {
-	source 										= "github.com/breno-hof/module-timestream//src?ref=1.0.0"
+	source 										= "github.com/breno-hof/module-timestream//src?ref=1.0.1"
 
 	should_create_database 						= true
 
