@@ -24,24 +24,22 @@ variable "tags" {
 variable "timestream_tables" {
   description								= "List of tables to be created in Timestream"
   type        								= map(object({
-    retention_memory_store					= optional(number, )
-    retention_magnetic_store				= optional(number, )
+    retention_memory_store					= optional(number, 1)
+    retention_magnetic_store				= optional(number, 1)
 	table_name								= string
-	tags									= optional(map(string), {})
 	enable_magnetic_store_writes			= optional(bool, false)
 	magnetic_store_rejected_data_location 	= optional(object({
 		bucket_name							= optional(string) 
 		is_encryption_option_sse_s3			= optional(bool)
 		ksm_key_arn							= optional(string) 
 		object_key_prefix					= optional(string) 
-	}))
-	schema									= optional(object({
+	}), null)
+	schema									= object({
 		composite_partition_key				= list(object({
 			name							= optional(string)
 			type							= string
 			enforcement_in_record			= optional(string)
-		}))  
-	}))
+		}))
+	})
   }))
-  default									= null
 }
